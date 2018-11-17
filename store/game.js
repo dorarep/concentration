@@ -75,7 +75,8 @@ export const actions = {
   },
   initialize ({ state, commit }, id) {
     commit('initialize', id)
+  },
+  startTimer ({ state, commit }) {
     commit('setTimer', setInterval(() => { commit('reduceTimer') }, 1000))
-
   }
 }
