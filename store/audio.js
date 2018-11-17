@@ -1,4 +1,5 @@
 import spoon from '~/assets/bgm/silver_spoon.mp3';
+import stage from '~/assets/bgm/stage_select.mp3';
 
 export const state = () => {
   return {
@@ -7,7 +8,8 @@ export const state = () => {
 }
 
 let sounds = {
-  'spoon': spoon
+  'spoon': spoon,
+  'stage': stage
 }
 
 let audioMap = {}

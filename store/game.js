@@ -84,4 +84,7 @@ export const actions = {
   setTimer ({ state, commit }, interval) {
     commit('setTimer', interval)
   },
+  stageSelect ({ state, commit }) {
+    commit('audio/playBgm', 'stage', {root: true})
+  }
 }

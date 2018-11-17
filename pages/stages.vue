@@ -30,10 +30,10 @@ export default {
         last.push(item);
         return table;
       }, [[]]);
-    },
-    mounted () {
-      return this.$store.commit('audio/playBgm', 'spoon')
     }
+  },
+  mounted () {
+    this.$store.dispatch('game/stageSelect')
   }
 }
 </script>

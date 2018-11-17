@@ -14,6 +14,9 @@ export default {
   components: {
     TopMenu,
     Logo
+  },
+  mounted () {
+    this.$store.dispatch('game/stageSelect')
   }
 }
 </script>
