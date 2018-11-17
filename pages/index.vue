@@ -23,19 +23,19 @@ export default {
 <style>
   .container {
     min-height: 100vh;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     background-color: #89c5ca;
   }
   .logo {
-    padding-top: 20%;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    margin-left: -75px;
+    transform: translate(-50%, -50%);
   }
   .menu {
-    position: fixed; /* or absolute */
+    position: fixed;
     top: 70%;
     left: 50%;
-    /* bring your own prefixes */
     transform: translate(-50%, -50%);
   }
 </style>

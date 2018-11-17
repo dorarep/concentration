@@ -36,6 +36,9 @@ export const mutations = {
     state.opening = null
   },
   initialize (state, id) {
+    if (state.timerObj) {
+      clearInterval(state.timerObj)
+    }
     state.boardX = STAGES[id].boardX
     state.boardY = STAGES[id].boardY
     state.timer = STAGES[id].timer

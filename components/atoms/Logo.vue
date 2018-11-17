@@ -4,6 +4,6 @@
 
 <style scoped>
   .logo {
-    width: 80%;
+    width: 300px;
   }
 </style>
