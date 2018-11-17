@@ -30,6 +30,9 @@ export default {
         last.push(item);
         return table;
       }, [[]]);
+    },
+    mounted () {
+      return this.$store.commit('audio/playBgm', 'spoon')
     }
   }
 }
