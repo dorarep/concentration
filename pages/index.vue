@@ -3,9 +3,7 @@
     .logo
       logo
     .menu
-      nuxt-link(to="/stages")
-        top-menu
-          div SELECT
+      nuxt-link(to="/stages") ▶ select
 </template>
 
 <script>
@@ -27,7 +25,7 @@ export default {
   }
   .logo {
     position: fixed;
-    top: 20%;
+    top: 30%;
     left: 50%;
     margin-left: -75px;
     transform: translate(-50%, -50%);
@@ -37,6 +35,7 @@ export default {
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-size: 35px;
   }
 </style>
 

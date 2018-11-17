@@ -23,6 +23,7 @@ html {
 
 a, u {
   text-decoration: none;
+  color: white;
 }
 
 html, body {margin: 0; height: 100%; overflow: hidden}

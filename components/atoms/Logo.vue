@@ -1,5 +1,5 @@
 <template lang="pug">
-  img.logo.animated.bounceInDown(src="~/assets/images/logo.png")
+  img.logo.animated.fadeInDown(src="~/assets/images/logo.png")
 </template>
 
 <style scoped>
