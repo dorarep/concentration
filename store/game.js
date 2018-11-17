@@ -5,11 +5,10 @@ const initialState = {
   boardX: 4,
   board: [[]],
   isOpen: [[]],
+  opening: null
 }
 
 export const state = () => JSON.parse(JSON.stringify(initialState))
-
-const getRandom = max => Math.floor(Math.random() * Math.floor(max))
 
 const shuffle = (a) => {
   for (let i = a.length - 1; i > 0; i--) {
@@ -23,6 +22,16 @@ export const mutations = {
   open (state, { y, x }) {
     state.isOpen[y][x] = true
     state.isOpen = Object.assign({}, state.isOpen)
+  },
+  close (state) {
+    state.isOpen[state.opening.y][state.opening.x] = false
+    state.isOpen = Object.assign({}, state.isOpen)
+  },
+  setOpening (state, { y, x }) {
+    state.opening = { y, x }
+  },
+  deleteOpening (state) {
+    state.opening = null
   },
   initialize (state) {
     let numbers = [...Array(state.boardY * state.boardX / 2)].map((v, i) => i)
@@ -43,7 +52,18 @@ export const mutations = {
 
 export const actions = {
   onClick ({ state, commit }, { y, x }) {
-    commit('open', { y, x })
+    if (state.opening) {
+      console.log(state.opening, state.board[y][x])
+      if (state.board[state.opening.y][state.opening.x] === state.board[y][x]) {
+        commit('open', { y, x })
+      } else {
+        commit('close')
+      }
+      commit('deleteOpening')
+    } else {
+      commit('open', { y, x })
+      commit('setOpening', { y, x })
+    }
   },
   initialize ({ state, commit }) {
     commit('initialize')
