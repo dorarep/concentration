@@ -10,7 +10,7 @@
 
 <style scoped>
   .wrapper {
-    width: 60px;
+    width: 100%;
     height: 60px;
     text-align: center;
     line-height: 60px;
