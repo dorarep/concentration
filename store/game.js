@@ -4,7 +4,7 @@ const initialState = {
   boardY: 2,
   boardX: 4,
   board: [[]],
-  isOpen: [[]]
+  isOpen: [[]],
 }
 
 export const state = () => JSON.parse(JSON.stringify(initialState))
@@ -21,14 +21,14 @@ const shuffle = (a) => {
 
 export const mutations = {
   open (state, { y, x }) {
-    state.isOpen[y][x] = 1
+    state.isOpen[y][x] = true
     state.isOpen = Object.assign({}, state.isOpen)
   },
   initialize (state) {
     let numbers = [...Array(state.boardY * state.boardX / 2)].map((v, i) => i)
     numbers = shuffle(numbers.concat(numbers))
     state.board = [...Array(state.boardY)].map(() => [...Array(state.boardX)].map(() => numbers.pop()))
-    state.isOpen = [...Array(state.boardY)].map(() => Array(state.boardX).fill(0))
+    state.isOpen = [...Array(state.boardY)].map(() => Array(state.boardX).fill(false))
     state.timer = 20
   },
   setTimer (state, timer) {

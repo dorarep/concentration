@@ -19,5 +19,7 @@
     line-height: 100px;
     border: medium solid black;
     font-size: 30px;
+    color: #519dad;
+    margin: 10px;
   }
 </style>
