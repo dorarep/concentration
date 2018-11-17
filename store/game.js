@@ -79,7 +79,7 @@ export const actions = {
   initialize ({ state, commit }, id) {
     commit('initialize', id)
     commit('resetBoard')
-    commit('audio/playSound', 'spoon', {root: true})
+    commit('audio/playBgm', 'spoon', {root: true})
   },
   setTimer ({ state, commit }, interval) {
     commit('setTimer', interval)
