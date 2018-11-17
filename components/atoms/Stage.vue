@@ -10,14 +10,13 @@
 
 <style scoped>
   .wrapper {
-    width: 100px;
-    height: 100px;
-    background-color: white;
+    width: 60px;
+    height: 60px;
     text-align: center;
-    line-height: 100px;
-    border: medium solid black;
-    font-size: 30px;
-    color: #519dad;
-    margin: 10px;
+    line-height: 60px;
+    font-size: 45px;
+    background-color: #ffd310;
+    color: #89c5ca;
+    margin-bottom: 5px;
   }
 </style>

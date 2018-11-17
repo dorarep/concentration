@@ -43,7 +43,12 @@ module.exports = {
     dev: true
   },
   css: [
+    'bootstrap/dist/css/bootstrap.css',
+    'bootstrap-vue/dist/bootstrap-vue.css',
     'animate.css'
+  ],
+  plugins: [
+    '@/plugins/bootstrap',
   ]
 }
 
