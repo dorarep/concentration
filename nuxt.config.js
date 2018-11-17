@@ -40,6 +40,9 @@ module.exports = {
   ],
   workbox: {
     dev: true
-  }
+  },
+  css: [
+    'animate.css'
+  ]
 }
 
