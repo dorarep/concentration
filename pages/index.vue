@@ -11,7 +11,7 @@ export default {
     GameScreen
   },
   mounted () {
-    this.$store.commit('game/initialize')
+    this.$store.dispatch('game/initialize')
   }
 }
 </script>

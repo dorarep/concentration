@@ -1,13 +1,17 @@
 <template lang="pug">
-  board
+  div
+    timer
+    board
 </template>
 
 <script>
+  import Timer from '~/components/atoms/Timer.vue'
   import Board from '~/components/molecules/Board.vue'
 
   export default {
     components: {
-      Board
+      Board,
+      Timer
     }
   }
 </script>
