@@ -9,6 +9,9 @@ import GameScreen from '~/components/organisms/GameScreen.vue'
 export default {
   components: {
     GameScreen
+  },
+  mounted () {
+    this.$store.commit('game/initialize')
   }
 }
 </script>

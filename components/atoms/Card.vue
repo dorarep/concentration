@@ -1,5 +1,7 @@
 <template lang="pug">
-  .wrapper {{ num + isOpen }}
+  .wrapper
+    div(v-if="isOpen") {{ num }}
+    div(v-else) 裏
 </template>
 
 <script>
