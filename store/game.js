@@ -1,3 +1,5 @@
+import STAGES from '~/constants/stages'
+
 const initialState = {
   timer: 0,
   timerObj: null,
@@ -33,12 +35,15 @@ export const mutations = {
   deleteOpening (state) {
     state.opening = null
   },
-  initialize (state) {
+  initialize (state, id) {
+    state.boardX = STAGES[id].boardX
+    state.boardY = STAGES[id].boardY
+    state.timer = STAGES[id].timer
+
     let numbers = [...Array(state.boardY * state.boardX / 2)].map((v, i) => i)
     numbers = shuffle(numbers.concat(numbers))
     state.board = [...Array(state.boardY)].map(() => [...Array(state.boardX)].map(() => numbers.pop()))
     state.isOpen = [...Array(state.boardY)].map(() => Array(state.boardX).fill(false))
-    state.timer = 20
   },
   setTimer (state, timer) {
     state.timerObj = timer
@@ -65,8 +70,8 @@ export const actions = {
       commit('setOpening', { y, x })
     }
   },
-  initialize ({ state, commit }) {
-    commit('initialize')
+  initialize ({ state, commit }, id) {
+    commit('initialize', id)
     commit('setTimer', setInterval(() => { commit('reduceTimer') }, 1000))
 
   }

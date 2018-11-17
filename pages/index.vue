@@ -1,29 +1,42 @@
 <template lang="pug">
   section.container
-    game-screen
+    .logo
+      logo
+    .menu
+      nuxt-link(to="/stages")
+        top-menu
+          div SELECT
 </template>
 
 <script>
-import GameScreen from '~/components/organisms/GameScreen.vue'
+  import TopMenu from '~/components/atoms/TopMenu.vue'
+  import Logo from '~/components/atoms/Logo.vue'
 
 export default {
   components: {
-    GameScreen
-  },
-  mounted () {
-    this.$store.dispatch('game/initialize')
+    TopMenu,
+    Logo
   }
 }
 </script>
 
 <style>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: #89c5ca;
-}
+  .container {
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #89c5ca;
+  }
+  .logo {
+    padding-top: 20%;
+  }
+  .menu {
+    position: fixed; /* or absolute */
+    top: 70%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
 </style>
 

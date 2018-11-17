@@ -21,6 +21,10 @@ html {
   margin: 0;
 }
 
+a, u {
+  text-decoration: none;
+}
+
 html, body {margin: 0; height: 100%; overflow: hidden}
 </style>
 
