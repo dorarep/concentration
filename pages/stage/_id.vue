@@ -30,16 +30,16 @@
     },
     methods: {
       onInformationOk () {
-        this.$store.dispatch('game/startTimer', setInterval(() => {
+        this.$store.dispatch('game/setTimer', setInterval(() => {
           this.$store.commit('game/reduceTimer')
 
           this.checkFinish()
         }, 1000))
       },
       checkFinish () {
-        console.log(this.$store.state)
         if (this.$store.state.game.timer === 0) {
           this.$refs.finishModal.show()
+          this.$store.dispatch('game/setTimer', null)
         }
       },
       onFinishOk () {

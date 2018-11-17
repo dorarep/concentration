@@ -50,6 +50,9 @@ export const mutations = {
     state.isOpen = [...Array(state.boardY)].map(() => Array(state.boardX).fill(false))
   },
   setTimer (state, timer) {
+    if (state.timerObj) {
+      clearInterval(state.timerObj)
+    }
     state.timerObj = timer
   },
   reduceTimer (state) {
@@ -77,7 +80,7 @@ export const actions = {
     commit('initialize', id)
     commit('resetBoard')
   },
-  startTimer ({ state, commit }, interval) {
+  setTimer ({ state, commit }, interval) {
     commit('setTimer', interval)
-  }
+  },
 }
