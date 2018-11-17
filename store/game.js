@@ -1,7 +1,8 @@
 const initialState = {
   timer: 0,
   timerObj: null,
-  boardSize: 4,
+  boardY: 2,
+  boardX: 4,
   board: [[]],
   isOpen: [[]]
 }
@@ -24,10 +25,10 @@ export const mutations = {
     state.isOpen = Object.assign({}, state.isOpen)
   },
   initialize (state) {
-    let numbers = [...Array(state.boardSize * state.boardSize / 2)].map((v, i) => i)
+    let numbers = [...Array(state.boardY * state.boardX / 2)].map((v, i) => i)
     numbers = shuffle(numbers.concat(numbers))
-    state.board = [...Array(state.boardSize)].map(() => [...Array(state.boardSize)].map(() => numbers.pop()))
-    state.isOpen = [...Array(state.boardSize)].map(() => Array(state.boardSize).fill(0))
+    state.board = [...Array(state.boardY)].map(() => [...Array(state.boardX)].map(() => numbers.pop()))
+    state.isOpen = [...Array(state.boardY)].map(() => Array(state.boardX).fill(0))
     state.timer = 20
   },
   setTimer (state, timer) {

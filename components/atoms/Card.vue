@@ -17,6 +17,7 @@
     background-color: white;
     text-align: center;
     line-height: 100px;
-    border: medium solid #ff00ff;
+    border: medium solid black;
+    font-size: 30px;
   }
 </style>

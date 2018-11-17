@@ -11,5 +11,6 @@
 <style scoped>
   .timer {
     color: white;
+    font-size: 30px;
   }
 </style>

@@ -23,7 +23,7 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: black;
+  background-color: #ff6b67;
 }
 </style>
 
