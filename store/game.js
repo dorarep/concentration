@@ -42,7 +42,8 @@ export const mutations = {
     state.boardX = STAGES[id].boardX
     state.boardY = STAGES[id].boardY
     state.timer = STAGES[id].timer
-
+  },
+  resetBoard (state) {
     let numbers = [...Array(state.boardY * state.boardX / 2)].map((v, i) => i)
     numbers = shuffle(numbers.concat(numbers))
     state.board = [...Array(state.boardY)].map(() => [...Array(state.boardX)].map(() => numbers.pop()))
@@ -61,7 +62,6 @@ export const mutations = {
 export const actions = {
   onClick ({ state, commit }, { y, x }) {
     if (state.opening) {
-      console.log(state.opening, state.board[y][x])
       if (state.board[state.opening.y][state.opening.x] === state.board[y][x]) {
         commit('open', { y, x })
       } else {
@@ -75,8 +75,9 @@ export const actions = {
   },
   initialize ({ state, commit }, id) {
     commit('initialize', id)
+    commit('resetBoard')
   },
-  startTimer ({ state, commit }) {
-    commit('setTimer', setInterval(() => { commit('reduceTimer') }, 1000))
+  startTimer ({ state, commit }, interval) {
+    commit('setTimer', interval)
   }
 }
