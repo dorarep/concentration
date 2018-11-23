@@ -25,6 +25,9 @@ export const mutations = {
     if (state.bgm === name) {
       return
     }
+    if (state.bgm) {
+      audioMap[state.bgm].pause()
+    }
     if (!audioMap[name]) {
       audioMap[name] = new Audio(sounds[name])
       audioMap[name].loop = true
