@@ -1,7 +1,5 @@
-<template>
-  <div>
-    <nuxt/>
-  </div>
+<template lang="pug">
+  nuxt
 </template>
 
 <style>
@@ -16,12 +14,7 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
-*, *:before, *:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-a, u {
+a, a:hover, u {
   text-decoration: none;
   color: white;
 }
