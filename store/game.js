@@ -62,6 +62,7 @@ export const mutations = {
     numbers = shuffle(numbers.concat(numbers))
     state.board = [...Array(state.boardY)].map(() => [...Array(state.boardX)].map(() => numbers.pop()))
     state.isOpen = [...Array(state.boardY)].map(() => Array(state.boardX).fill(false))
+    state.opening = null
   },
   setTimer (state, timer) {
     if (state.timerObj) {
@@ -89,6 +90,7 @@ export const actions = {
       commit('open', { y, x })
       commit('setOpening', { y, x })
     }
+
     const isFinish = Object.keys(state.isOpen).reduce((carry, key) => carry && state.isOpen[key].reduce((carry, cell) => carry && cell, true), true)
     if (isFinish) {
       commit('resetBoard')

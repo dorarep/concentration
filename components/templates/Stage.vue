@@ -1,9 +1,9 @@
 <template lang="pug">
   section.container
-    b-modal(centered ref="informationModal" ok-only @ok="onInformationOk")
+    b-modal(centered ref="informationModal" ok-only @hide="onInformationOk")
       p {{ `STAGE ${stageId}` }}
       p {{ `TIME: ${stage.timer} sec` }}
-    b-modal(centered ref="finishModal" ok-only @ok="onFinishOk")
+    b-modal(centered ref="finishModal" ok-only @hide="onFinishOk")
       p FINISH
     game-screen
 </template>
