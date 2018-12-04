@@ -1,10 +1,10 @@
 <template lang="pug">
-  .wrapper {{ id }}
+  .wrapper(:class="{clear}") {{ id }}
 </template>
 
 <script>
   export default {
-    props: [ 'id' ]
+    props: ['id', 'clear']
   }
 </script>
 
@@ -18,5 +18,8 @@
     background-color: #ffd310;
     color: #89c5ca;
     margin-bottom: 5px;
+  }
+  .clear {
+    background-color: gray;
   }
 </style>

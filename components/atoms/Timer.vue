@@ -1,5 +1,7 @@
 <template lang="pug">
-  .timer {{ $store.state.game.timer }}
+  div
+    .timer {{ $store.state.game.timer }}
+    p.timer score: {{ $store.state.game.score }}
 </template>
 
 <script>

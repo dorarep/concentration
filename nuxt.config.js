@@ -51,6 +51,7 @@ module.exports = {
     'animate.css'
   ],
   plugins: [
+    { src: '@/plugins/vuex-persist', ssr: false },
     '@/plugins/bootstrap',
   ]
 }

@@ -1,8 +1,7 @@
 <template lang="pug">
-  div
+  div(@click="$store.dispatch('game/finishLearning')")
     timer
     board
-    button(@click="$store.dispatch('game/finishLearning')" v-if="$store.getters['game/isGameStateLearning']") 開始
 </template>
 
 <script>

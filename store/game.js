@@ -5,6 +5,7 @@ export const STATE_LEARNING    = 1
 export const STATE_PLAYING     = 2
 
 const initialState = {
+  score: 0,
   timer: 0,
   timerObj: null,
   boardY: 2,
@@ -43,6 +44,9 @@ export const mutations = {
   setGameState (state, gameState) {
     state.gameState = gameState
   },
+  addScore (state) {
+    state.score++
+  },
   setOpening (state, { y, x }) {
     state.opening = { y, x }
   },
@@ -53,6 +57,7 @@ export const mutations = {
     if (state.timerObj) {
       clearInterval(state.timerObj)
     }
+    state.score = 0
     state.boardX = STAGES[id].boardX
     state.boardY = STAGES[id].boardY
     state.timer = STAGES[id].timer
@@ -82,18 +87,17 @@ let clickLock = false
 
 export const actions = {
   async onClick ({ state, commit }, { y, x }) {
-    if (clickLock) {
+    if (clickLock || state.gameState !== STATE_PLAYING || state.isOpen[y][x]) {
       return
     }
     clickLock = true
-    console.log(x, y, state.opening)
     if (state.opening) {
       if (state.board[state.opening.y][state.opening.x] === state.board[y][x]) {
         commit('open', { y, x })
-        await wait(300)
+        await wait(150)
       } else {
         commit('open', { y, x })
-        await wait(600)
+        await wait(300)
         commit('close', { y: state.opening.y, x: state.opening.x })
         commit('close', { y, x })
       }
@@ -101,13 +105,15 @@ export const actions = {
     } else {
       commit('open', { y, x })
       commit('setOpening', { y, x })
-      await wait(300)
+      await wait(150)
     }
 
     const isFinish = Object.keys(state.isOpen).reduce((carry, key) => carry && state.isOpen[key].reduce((carry, cell) => carry && cell, true), true)
     if (isFinish) {
       commit('resetBoard')
+      await wait(300)
       commit('setGameState', STATE_LEARNING)
+      commit('addScore')
     }
     clickLock = false
   },

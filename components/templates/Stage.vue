@@ -1,10 +1,13 @@
 <template lang="pug">
   section.container
-    b-modal(centered ref="informationModal" ok-only @hide="onInformationOk")
+    b-modal(centered ref="informationModal" no-close-on-backdrop ok-only @hide="onInformationOk")
       p {{ `STAGE ${stageId}` }}
       p {{ `TIME: ${stage.timer} sec` }}
-    b-modal(centered ref="finishModal" ok-only @hide="onFinishOk")
+      p {{ `CLEAR: over ${stage.score} score` }}
+    b-modal(centered ref="finishModal" no-close-on-backdrop ok-only @hide="onFinishOk")
       p FINISH
+      p {{ `CLEAR: over ${stage.score} score` }}
+      p {{ `Your score: ${$store.state.game.score}` }}
     game-screen
 </template>
 
@@ -43,6 +46,9 @@
         }
       },
       onFinishOk () {
+        if (this.$store.state.game.score >= STAGES[this.$route.params.id].score) {
+          this.$store.commit('user/clear', this.$route.params.id)
+        }
         this.$router.push('/stages')
       }
     }

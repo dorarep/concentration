@@ -5,7 +5,7 @@
       b-row(v-for="(stageRow, i) in stages")
         b-col(v-for="(stage, j) in stageRow")
           nuxt-link(:to="`/stage/${i * 4 + j}`")
-            stage(:id="i * 4 + j + 1")
+            stage(:id="i * 4 + j + 1", :clear="$store.state.user.cleared[i * 4 + j]")
 </template>
 
 <script>
