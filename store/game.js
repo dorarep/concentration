@@ -36,8 +36,8 @@ export const mutations = {
     state.isOpen[y][x] = true
     state.isOpen = Object.assign({}, state.isOpen)
   },
-  close (state) {
-    state.isOpen[state.opening.y][state.opening.x] = false
+  close (state, { y, x }) {
+    state.isOpen[y][x] = false
     state.isOpen = Object.assign({}, state.isOpen)
   },
   setGameState (state, gameState) {
@@ -77,18 +77,31 @@ export const mutations = {
   }
 }
 
+const wait = ms => new Promise((r, j)=>setTimeout(r, ms))
+let clickLock = false
+
 export const actions = {
-  onClick ({ state, commit }, { y, x }) {
+  async onClick ({ state, commit }, { y, x }) {
+    if (clickLock) {
+      return
+    }
+    clickLock = true
+    console.log(x, y, state.opening)
     if (state.opening) {
       if (state.board[state.opening.y][state.opening.x] === state.board[y][x]) {
         commit('open', { y, x })
+        await wait(300)
       } else {
-        commit('close')
+        commit('open', { y, x })
+        await wait(600)
+        commit('close', { y: state.opening.y, x: state.opening.x })
+        commit('close', { y, x })
       }
       commit('deleteOpening')
     } else {
       commit('open', { y, x })
       commit('setOpening', { y, x })
+      await wait(300)
     }
 
     const isFinish = Object.keys(state.isOpen).reduce((carry, key) => carry && state.isOpen[key].reduce((carry, cell) => carry && cell, true), true)
@@ -96,6 +109,7 @@ export const actions = {
       commit('resetBoard')
       commit('setGameState', STATE_LEARNING)
     }
+    clickLock = false
   },
   initialize ({ state, commit }, id) {
     commit('initialize', id)
