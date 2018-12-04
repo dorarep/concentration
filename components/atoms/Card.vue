@@ -1,9 +1,6 @@
 <template lang="pug">
-  div(v-if="isOpen")
-    .wrapper
-      .card {{ num }}
-  div(v-else)
-    img.wrapper(src="~/assets/images/close.png")
+  .number-card.wrapper(v-if="isOpen") {{ num }}
+  img.wrapper(v-else src="~/assets/images/close.png")
 </template>
 
 <script>
@@ -18,14 +15,14 @@
     height: 100px;
     margin: 10px;
   }
-  .card {
-    width: 100%;
-    height: 100%;
-    background-color: white;
+  .number-card {
+    width: 100px;
+    height: 100px;
+    background-color: #ffd310;
+    border: 0;
     text-align: center;
     line-height: 100px;
-    border: medium solid black;
     font-size: 30px;
-    color: #519dad;
+    color: #89c5ca;
   }
 </style>

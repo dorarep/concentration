@@ -2,7 +2,7 @@
   .table
     .tr(v-for="(row, y) in $store.state.game.board" :key="y")
       .td(v-for="(cell, x) in row" :key="x" )
-        card(:num="$store.state.game.board[y][x]" :isOpen="$store.state.game.isOpen[y][x]" @click.native="$store.dispatch('game/onClick', {y, x})")
+        card(:num="$store.state.game.board[y][x]" :isOpen="$store.getters['game/isGameStateLearning'] || $store.state.game.isOpen[y][x]" @click.native="$store.dispatch('game/onClick', {y, x})")
 </template>
 
 <script>

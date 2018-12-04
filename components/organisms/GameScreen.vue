@@ -2,6 +2,7 @@
   div
     timer
     board
+    button(@click="$store.dispatch('game/finishLearning')" v-if="$store.getters['game/isGameStateLearning']") 開始
 </template>
 
 <script>

@@ -1,5 +1,9 @@
 import STAGES from '~/constants/stages'
 
+export const STATE_BEFORE_GAME = 0
+export const STATE_LEARNING    = 1
+export const STATE_PLAYING     = 2
+
 const initialState = {
   timer: 0,
   timerObj: null,
@@ -7,7 +11,8 @@ const initialState = {
   boardX: 4,
   board: [[]],
   isOpen: [[]],
-  opening: null
+  opening: null,
+  gameState: STATE_BEFORE_GAME
 }
 
 export const state = () => JSON.parse(JSON.stringify(initialState))
@@ -20,6 +25,12 @@ const shuffle = (a) => {
   return a;
 }
 
+export const getters = {
+  isGameStateLearning (state) {
+    return state.gameState === STATE_LEARNING
+  }
+}
+
 export const mutations = {
   open (state, { y, x }) {
     state.isOpen[y][x] = true
@@ -28,6 +39,9 @@ export const mutations = {
   close (state) {
     state.isOpen[state.opening.y][state.opening.x] = false
     state.isOpen = Object.assign({}, state.isOpen)
+  },
+  setGameState (state, gameState) {
+    state.gameState = gameState
   },
   setOpening (state, { y, x }) {
     state.opening = { y, x }
@@ -75,6 +89,11 @@ export const actions = {
       commit('open', { y, x })
       commit('setOpening', { y, x })
     }
+    const isFinish = Object.keys(state.isOpen).reduce((carry, key) => carry && state.isOpen[key].reduce((carry, cell) => carry && cell, true), true)
+    if (isFinish) {
+      commit('resetBoard')
+      commit('setGameState', STATE_LEARNING)
+    }
   },
   initialize ({ state, commit }, id) {
     commit('initialize', id)
@@ -82,7 +101,13 @@ export const actions = {
     commit('audio/playBgm', 'spoon', {root: true})
   },
   setTimer ({ state, commit }, interval) {
+    commit('setGameState', STATE_LEARNING)
     commit('setTimer', interval)
+  },
+  finishLearning ({ state, commit }) {
+    if (state.gameState === STATE_LEARNING) {
+      commit('setGameState', STATE_PLAYING)
+    }
   },
   stageSelect ({ state, commit }) {
     commit('audio/playBgm', 'stage', {root: true})
