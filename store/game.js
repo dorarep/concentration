@@ -94,7 +94,7 @@ export const actions = {
     if (state.opening) {
       if (state.board[state.opening.y][state.opening.x] === state.board[y][x]) {
         commit('open', { y, x })
-        await wait(150)
+        await wait(50)
       } else {
         commit('open', { y, x })
         await wait(300)
@@ -105,7 +105,7 @@ export const actions = {
     } else {
       commit('open', { y, x })
       commit('setOpening', { y, x })
-      await wait(150)
+      await wait(50)
     }
 
     const isFinish = Object.keys(state.isOpen).reduce((carry, key) => carry && state.isOpen[key].reduce((carry, cell) => carry && cell, true), true)
