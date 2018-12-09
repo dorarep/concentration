@@ -11,7 +11,7 @@ export default {
     Stages
   },
   mounted () {
-    document.body.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false })
+    document.body.removeEventListener('touchmove', (e) => e.preventDefault(), { passive: false })
   }
 }
 </script>
