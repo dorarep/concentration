@@ -40,6 +40,7 @@
 
 <style>
   #stages-container {
+    overflow-y: scroll;
     min-height: 100vh;
     justify-content: center;
     align-items: center;
