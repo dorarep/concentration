@@ -94,6 +94,7 @@ export const actions = {
     if (state.opening) {
       if (state.board[state.opening.y][state.opening.x] === state.board[y][x]) {
         commit('open', { y, x })
+        commit('addScore')
         await wait(50)
       } else {
         commit('open', { y, x })
@@ -113,7 +114,6 @@ export const actions = {
       commit('resetBoard')
       await wait(300)
       commit('setGameState', STATE_LEARNING)
-      commit('addScore')
     }
     clickLock = false
   },
