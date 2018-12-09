@@ -2,7 +2,7 @@ export default [
   {
     boardX: 2,
     boardY: 2,
-    timer: 5,
+    timer: 10,
     score: 1
   },
   {

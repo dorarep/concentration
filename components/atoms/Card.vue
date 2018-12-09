@@ -1,36 +1,55 @@
 <template lang="pug">
-  .flip-container.wrapper(:class="{ 'is-close': !isOpen }")
+  .flip-container.wrapper(:class="{ 'is-close': !isOpen, m: size === 'm', l: size === 'l', s: size === 's' }")
     .flipper
       .front
-        .number-card {{ num }}
+        .number-card(:class="size") {{ num }}
       .back
-        img(src="~/assets/images/close.png")
+        img(:class="size" src="~/assets/images/close.png")
 </template>
 
 <script>
   export default {
-    props: ['num', 'isOpen']
+    props: {
+      size: {
+        type: String,
+        default: 'l'
+      },
+      num: {
+        type: Number
+      },
+      isOpen: {
+        type: Boolean
+      }
+    }
   }
 </script>
 
 <style scoped>
-  img {
+  .s {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+  }
+
+  .m {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+  }
+
+  .l {
     width: 100px;
     height: 100px;
+    line-height: 100px;
   }
 
   .wrapper {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
+    margin: 5px;
   }
   .number-card {
-    width: 100px;
-    height: 100px;
     background-color: #ffd310;
     border: 0;
     text-align: center;
-    line-height: 100px;
     font-size: 30px;
     color: #89c5ca;
   }

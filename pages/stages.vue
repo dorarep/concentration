@@ -9,6 +9,9 @@ export default {
   layout: 'list',
   components: {
     Stages
+  },
+  mounted () {
+    document.body.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false })
   }
 }
 </script>
