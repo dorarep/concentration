@@ -111,6 +111,7 @@ export const actions = {
 
     const isFinish = Object.keys(state.isOpen).reduce((carry, key) => carry && state.isOpen[key].reduce((carry, cell) => carry && cell, true), true)
     if (isFinish) {
+      await wait(100)
       commit('resetBoard')
       await wait(300)
       commit('setGameState', STATE_LEARNING)

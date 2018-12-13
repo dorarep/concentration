@@ -6,6 +6,7 @@
 import Stages from '~/components/templates/Stages.vue'
 
 export default {
+  layout: 'list',
   components: {
     Stages
   },
